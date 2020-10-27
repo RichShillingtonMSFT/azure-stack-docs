@@ -99,7 +99,7 @@ Once you have a certificate, use the PowerShell script below to register your ap
     # Use the Get-Item cmdlet to retrieve your certificate.
     # If you don't want to use a managed certificate, you can produce a self signed cert for testing purposes: 
     # $Cert = New-SelfSignedCertificate -CertStoreLocation "cert:\CurrentUser\My" -Subject "CN=<YourAppName>" -KeySpec KeyExchange
-    $Cert = Get-Item "<YourCertificateLocation>"
+    $Cert = Get-PfxCertificate -FilePath "<YourCertificateLocation>" # Enter the pfx password when prompted
     
     # Use the privileged endpoint to create the new app registration (and service principal object)
     $SpObject = Invoke-Command -Session $Session -ScriptBlock {New-GraphApplication -Name "<YourAppName>" -ClientCertificates $using:cert}
